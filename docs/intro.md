@@ -2,46 +2,133 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Quick Start
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Quick Start validating forms with schema.
+## Compatible
 
-## Getting Started
+- [ReactJS](https://reactjs.com/) - ReactJS
+- [React Native](https://react-native.org/) - React Native (Mobile)
 
-Get started by **creating a new site**.
+## Benchmarks
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+Benchmarks to compare with other schemas validators (the performance can variate slightly depending on the machine).
 
-### What you'll need
+### Normal
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
+```sh
+@resourge/schema x 18,634,802 ops/sec ±1.30%  (93 runs sampled)
+Fast Validator   x  1,632,544 ops/sec ±0.50%  (92 runs sampled)
+joi              x    182,179 ops/sec ±1.15%  (93 runs sampled)
+zod              x     52,358 ops/sec ±0.86%  (89 runs sampled)
+Yup              x      8,573 ops/sec ±4.42%  (81 runs sampled)
+Fastest is  [ '@resourge/schema' ]
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+### Heavy (done with an array with 10 000 items)
 
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
+```sh
+@resourge/schema x    2,594 ops/sec ±0.80% (86 runs sampled)
+Fast Validator   x      227 ops/sec ±0.96% (82 runs sampled)
+joi              x    32.28 ops/sec ±2.86% (55 runs sampled)
+zod              x    21.99 ops/sec ±1.58% (40 runs sampled)
+Yup              x    15.65 ops/sec ±2.47% (43 runs sampled)
+Fastest is  [ '@resourge/schema' ]
 ```
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+Would you like to try?
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+```sh
+git clone https://github.com/resourge/schema.git
+cd schema
+npm install
+npm run bench
+```
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+## Installation
+
+- Using Yarn
+
+```bash
+yarn add @resourge/schema
+```
+
+- Using npm
+
+```bash
+npm install @resourge/schema --save
+```
+
+## Usage
+
+```javascript
+import { array, object, string, min, number } from '@resourge/schemas';
+
+const schema = object<User>({
+  name: string().min(5).required(),
+  age: number().min(18).required(),
+  location: object({
+    city: string().required(),
+    address: string().required(),
+    postalCode: string().postalCode(PostalCodes.PT).required(),
+    country: string().min(3).required(),
+  }).required(),
+  hobbies: array(string()).min(1).required(),
+}).compile();
+
+
+```
+
+### Example
+
+Demonstration of a example of a simple validation on form.
+
+```javascript
+import { array, object, string } from '@resourge/schemas';
+
+type User = {
+  name: string
+  age: number
+  location: {
+    city: string
+    address: string,
+    postalCode: string,
+    country: string
+  },
+  hobbies: string[]
+}
+
+const user: User = {
+  name: 'Rimuru',
+  age: 39,
+  location: {
+    city: 'Tempest',
+    address: 'Tempest',
+    postalCode: '4000-000',
+    country: 'Tempest'
+  },
+  hobbies: [
+ 'Read',
+ 'Nothing'
+  ] 
+}
+
+const schema = object<User>({
+  name: string().min(5).required(),
+  age: number().min(18).required(),
+  location: object({
+    city: string().required(),
+    address: string().required(),
+    postalCode: string().postalCode(PostalCodes.PT).required(),
+    country: string().min(3).required(),
+  }).required(),
+  hobbies: array(string()).min(1).required(),
+}).compile();
+
+const schemaErrors = schema.validate(user)
+const isValidUser = schema.isValid(user)
+```
+
+## Known Bugs
+
+- Let's us know if any <a href="https://github.com/resourge/schema/issues">here</a>.

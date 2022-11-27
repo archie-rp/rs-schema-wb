@@ -10,32 +10,56 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Extremely fast and versatile',
+    Svg: require('@site/static/img/fast.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        One of the fastest validations.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Build in Typescript',
+    Svg: require('@site/static/img/build.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Get all the features with autocomplete, error messages, typesafety and more.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Offers a complete collection',
+    Svg: require('@site/static/img/collection.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Complete collection of validations <b>(email, postalCode, etc...).</b>
+      </>
+    ),
+  },
+  {
+    title: 'Support for Async and Sync validations',
+    Svg: require('@site/static/img/async_sync.svg').default,
+    description: (
+      <>
+        Custom methods <b>(test and asyncTest)</b> easy to implement and use.
+      </>
+    ),
+  },
+  {
+    title: 'Validation for Postal Codes',
+    Svg: require('@site/static/img/postal_codes.svg').default,
+    description: (
+      <>
+        Includes validation for countries postal codes.
+      </>
+    ),
+  },
+  {
+    title: 'Support for Web and Mobile',
+    Svg: require('@site/static/img/web_mobile.svg').default,
+    description: (
+      <>
+        Same library for multiple platforms (ReactJS and React Native).
       </>
     ),
   },
