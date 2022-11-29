@@ -25,7 +25,7 @@ Also exists some predefined normal rules:
 - <a href="/docs/api/Object">Object</a>
 - <a href="/docs/api/String">String</a>
 
-{{< alert icon="💡" text="If you have rules that you normally use, please tell us so we can improve the package." />}}
+If you have rules that you normally use, please tell us so we can improve the package.
 
 ### test
 
