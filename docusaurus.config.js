@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Schema Validator',
-  tagline: 'A schema validator to validate simple and complex forms.',
+  tagline: 'Effortlessly validate simple and complex forms with our schema validator',
   url: 'https://resourge-schema-validator.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -32,7 +32,7 @@ const config = {
   ],
   presets: [
     [
-      'classic',
+      '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
@@ -49,9 +49,9 @@ const config = {
           editUrl:
             'https://github.com/resourge/schema',
         },
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
+         theme: {
+           customCss: require.resolve('./src/css/custom.css'),
+         },
       }),
     ],
   ],
@@ -119,6 +119,11 @@ const config = {
           },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Resourge Schema Validator.`,
+      },
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: false,
       },
       prism: {
         theme: lightCodeTheme,

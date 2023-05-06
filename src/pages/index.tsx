@@ -31,7 +31,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={siteConfig.title}
-      description="Validations faster and easier for javascript">
+      description="Effortlessly validate simple and complex forms with our schema validator">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

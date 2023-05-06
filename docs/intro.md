@@ -4,19 +4,54 @@ sidebar_position: 1
 
 # Quick Start
 
-Quick Start validating forms with schema.
-## Compatible
+To quickly start validating forms with Schema Validator, follow these steps:
 
+1. Clone the library from the GitHub repository:
+```bash
+  git clone https://github.com/resourge/schema.git
+```
+2. Install the library using either `npm` or `yarn`:
+```bash
+  npm install @resourge/schema --save
+  # OR
+  yarn add @resourge/schema
+```
+3. Import the desired validation functions from the library:
+```javascript
+  import { object, string, number, array } from '@resourge/schemas';
+```
+4. Create a schema object that defines the structure of the form and its validation rules:
+```javascript
+  const schema = object<User>({
+    name: string().min(5).required(),
+    age: number().min(18).required(),
+    location: object({
+      city: string().required(),
+      address: string().required(),
+      postalCode: string().postalCode(PostalCodes.PT).required(),
+      country: string().min(3).required(),
+    }).required(),
+    hobbies: array(string()).min(1).required(),
+  }).compile();
+```
+5. Validate the form data using the schema:
+```javascript
+  const schemaErrors = schema.validate(user)
+  const isValidUser = schema.isValid(user)
+```
+
+## Compatibility
+
+Schema Validator is compatible with:
 - [ReactJS](https://reactjs.com/) - ReactJS
 - [React Native](https://react-native.org/) - React Native (Mobile)
 
-## Benchmarks
+## Performance
 
-Benchmarks to compare with other schemas validators (the performance can variate slightly depending on the machine).
-
+The following benchmark results compare Schema Validator with other schema validators:
 ### Normal
 
-```sh
+```bash
 @resourge/schema x 18,634,802 ops/sec ±1.30%  (93 runs sampled)
 Fast Validator   x  1,632,544 ops/sec ±0.50%  (92 runs sampled)
 joi              x    182,179 ops/sec ±1.15%  (93 runs sampled)
@@ -25,9 +60,9 @@ Yup              x      8,573 ops/sec ±4.42%  (81 runs sampled)
 Fastest is  [ '@resourge/schema' ]
 ```
 
-### Heavy (done with an array with 10 000 items)
+### Heavy (done with an array with 10,000 items)
 
-```sh
+```bash
 @resourge/schema x    2,594 ops/sec ±0.80% (86 runs sampled)
 Fast Validator   x      227 ops/sec ±0.96% (82 runs sampled)
 joi              x    32.28 ops/sec ±2.86% (55 runs sampled)
@@ -36,98 +71,7 @@ Yup              x    15.65 ops/sec ±2.47% (43 runs sampled)
 Fastest is  [ '@resourge/schema' ]
 ```
 
-Would you like to try?
-
-```sh
-git clone https://github.com/resourge/schema.git
-cd schema
-npm install
-npm run bench
-```
-
-## Installation
-
-- Using Yarn
-
-```bash
-yarn add @resourge/schema
-```
-
-- Using npm
-
-```bash
-npm install @resourge/schema --save
-```
-
-## Usage
-
-```javascript
-import { array, object, string, min, number } from '@resourge/schemas';
-
-const schema = object<User>({
-  name: string().min(5).required(),
-  age: number().min(18).required(),
-  location: object({
-    city: string().required(),
-    address: string().required(),
-    postalCode: string().postalCode(PostalCodes.PT).required(),
-    country: string().min(3).required(),
-  }).required(),
-  hobbies: array(string()).min(1).required(),
-}).compile();
-
-
-```
-
-### Example
-
-Demonstration of a example of a simple validation on form.
-
-```javascript
-import { array, object, string } from '@resourge/schemas';
-
-type User = {
-  name: string
-  age: number
-  location: {
-    city: string
-    address: string,
-    postalCode: string,
-    country: string
-  },
-  hobbies: string[]
-}
-
-const user: User = {
-  name: 'Rimuru',
-  age: 39,
-  location: {
-    city: 'Tempest',
-    address: 'Tempest',
-    postalCode: '4000-000',
-    country: 'Tempest'
-  },
-  hobbies: [
- 'Read',
- 'Nothing'
-  ] 
-}
-
-const schema = object<User>({
-  name: string().min(5).required(),
-  age: number().min(18).required(),
-  location: object({
-    city: string().required(),
-    address: string().required(),
-    postalCode: string().postalCode(PostalCodes.PT).required(),
-    country: string().min(3).required(),
-  }).required(),
-  hobbies: array(string()).min(1).required(),
-}).compile();
-
-const schemaErrors = schema.validate(user)
-const isValidUser = schema.isValid(user)
-```
+Note: The performance may vary depending on the machine.
 
 ## Known Bugs
 

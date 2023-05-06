@@ -19,7 +19,7 @@ number().min(1)
 
 ### min
 
-Checks if number is bigger than minValue.
+This function checks if `number` is bigger than `minValue`.
 
 ```javascript
 number().min(1)
@@ -29,7 +29,7 @@ number().min(1, 'Custom error message')
 
 ### max
 
-Checks if number is smaller than maxValue.
+This function checks if `number` is smaller than `maxValue`.
 
 ```javascript
 
@@ -40,7 +40,7 @@ number().max(10, 'Custom error message')
 
 ### between
 
-Checks if number is between minValue and maxValue.
+This function checks if `number` is between `minValue` and `maxValue`.
 
 ```javascript
 number().between(1, 10)
@@ -50,7 +50,7 @@ number().between(1, 10, 'Custom error message')
 
 ### equals
 
-Checks if number equal to value.
+This function checks if `number` equal to `value`.
 
 ```javascript
 number().equals(1)
@@ -65,7 +65,7 @@ number().equals([1, 10], 'Custom error message')
 
 ### integer
 
-Checks if number is integer.
+This function checks if `number` is `integer`.
 
 ```javascript
 number().integer()
@@ -75,7 +75,7 @@ number().integer('Custom error message')
 
 ### decimal
 
-Checks if number is decimal.
+This function checks if `number` is `decimal`.
 
 ```javascript
 number().decimal()
@@ -85,7 +85,7 @@ number().decimal('Custom error message')
 
 ### positive
 
-Checks if number is a positive value.
+This function checks if `number` is a `positive value`.
 
 ```javascript
 number().positive()
@@ -95,7 +95,7 @@ number().positive('Custom error message')
 
 ### negative
 
-Checks if number is a negative value.
+This function checks if `number` is a `negative value`.
 
 ```javascript
 number().negative()
@@ -105,10 +105,9 @@ number().negative('Custom error message')
 
 ### enum
 
-Checks if number is a value of enum.
+This function checks if `number` is a value of an `enum`.
 
 ```javascript
-
 enum FieldTypeEnum {
   FREE_TEXT = 1,
   EXISTING_FIELD = 2,
@@ -119,7 +118,3 @@ number().enum(FieldTypeEnum)
 // with custom message
 number().enum(FieldTypeEnum, 'Custom error message')
 ```
-
-## Contribution
-
-In case you have different validations that you use, please tell us so we improve the library.

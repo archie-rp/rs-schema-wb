@@ -1,60 +1,68 @@
 ---
 sidebar_position: 2
 ---
-
-## Example
+### Basic example
 
 ```javascript
 import { number, array } from '@resourge/schema';
 
-array(<<Schema>>)
-// or
-array(<<Schema>>, 'Custom error message')
-
 // Validate if array as at least 1 item
 array(number()).min(1)
+
+// Custom error message
+array(<<Schema>>, 'Custom error message')
 ```
 
-## Options
-
-### empty
+### Checks if array is empty
 
 Checks if array is empty
 
 ```javascript
 array(number()).empty()
-// with custom message
+```
+
+Custom error message:
+
+```javascript
 array(number()).empty('Custom error message')
 ```
 
 ### min
 
-Checks if array has a minimal number of items in array
+Checks if array has a minimum number of items in array
 
 ```javascript
 array(number()).min(1)
-// with custom message
+```
+
+Custom error message:
+```javascript
 array(number()).min(1, 'Custom error message')
 ```
 
 ### max
 
-Checks if array has a maximal number of elements.
+Checks if array has a maximum number of elements
 
 ```javascript
-
 array(number()).max(10)
-// with custom message
-array(number()).max(10, 'Custom error message')
 ```
 
+Custom error message:
+```javascript
+array(number()).max(10, 'Custom error message')
+```
 ### length
 
 Checks if array has length number of elements
 
 ```javascript
 array(number()).length(1, 10)
-// with custom message
+```
+
+Custom error message:
+
+```javascript
 array(number()).length(1, 10, 'Custom error message')
 ```
 
@@ -68,9 +76,17 @@ array(number()).unique()
 array(number()).unique('Custom error message')
 ```
 
+Custom error message:
+
+```javascript
+array(number()).unique('Custom error message')
+```
+
 ### uniqueBy
 
-Checks if array has only unique elements by key
+Checks if array has only unique elements by key or function.
+
+Using key:
 
 ```javascript
 array(
@@ -79,14 +95,22 @@ array(
   productName: string()
  })
 ).uniqueBy('productId')
-// with custom message
+```
+
+Custom error message:
+
+```javascript
 array(
  object({
   productId: number(),
   productName: string()
  })
 ).uniqueBy('productId', 'Custom error message')
-// with method instead of key
+```
+
+Using function:
+
+```javascript
 array(
  object({
   productId: number(),
@@ -94,7 +118,3 @@ array(
  })
 ).uniqueBy((obj) => obj.productName)
 ```
-
-## Contribution
-
-In case you have different validations that you use, please tell us so we improve the library.

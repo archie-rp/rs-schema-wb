@@ -16,14 +16,10 @@ boolean('Custom error message')
 
 ### mustBe
 
-Checks if boolean is true or false
+Checks if `boolean` is `true` or `false`
 
 ```javascript
 date().mustBe(true)
 // with custom message
 date().mustBe(true, 'Custom error message')
 ```
-
-## Contribution
-
-In case you have different validations that you use, please tell us so we improve the library.

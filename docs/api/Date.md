@@ -23,7 +23,3 @@ date().today()
 // with custom message
 date().today('Custom error message')
 ```
-
-## Contribution
-
-In case you have different validations that you use, please tell us so we improve the library.

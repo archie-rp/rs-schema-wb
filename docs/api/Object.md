@@ -2,7 +2,9 @@
 sidebar_position: 3
 ---
 
-## Example
+### Basic example
+
+You can use `object` method to validate an `object`. Below is a basic example:
 
 ```javascript
 import { object } from '@resourge/schema';
@@ -17,7 +19,3 @@ object({
   age: number().min(18).required()
 }, 'Custom error message')
 ```
-
-## Contribution
-
-In case you have different validations that you use, please tell us so we improve the library.
